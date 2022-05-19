@@ -5,4 +5,7 @@ public interface ArraysAndStrings {
     boolean permutationChecker(String str1, String str2);
     String urlify(String toBeUrlify, int len);
     boolean palindromePermutation(String str);
+    boolean oneAway(String str1, String str2);
+    String stringCompressor(String str);
+    int [][] matrixRotator(int[][] matrix);
 }

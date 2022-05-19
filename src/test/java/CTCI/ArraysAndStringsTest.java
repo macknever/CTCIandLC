@@ -2,10 +2,15 @@ package CTCI;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ArraysAndStringsTest {
+public class ArraysAndStringsTest extends TestBase{
+
+    private static final Logger LOG = LoggerFactory.getLogger(ArraysAndStringsTest.class);
 
     private ArraysAndStringsImp as;
 
@@ -47,5 +52,27 @@ public class ArraysAndStringsTest {
         final String nonPalindromeStr = "ab";
         assertTrue(as.palindromePermutation(palindromeStr));
         assertFalse(as.palindromePermutation(nonPalindromeStr));
+    }
+
+    @Test
+    void oneAwayTest() {
+        assertTrue(as.oneAway("pale","ple"));
+        assertTrue(as.oneAway("pales","pale"));
+        assertTrue(as.oneAway("pale","bale"));
+        assertFalse(as.oneAway("pale","bake"));
+    }
+
+    @Test
+    void stringCompressorTest() {
+        final String str = "a";
+        final String expectedStr = "a";
+        assertEquals(expectedStr,as.stringCompressor(str));
+    }
+
+    @Test
+    void matrixRotatorTest() {
+       final int [][] matrix = new int[][]{{1,2,3,4},{4,5,6,7},{7,8,9,10},{4,5,7,9}};
+       final int [][] expectedRotatedMatrix = new int[][]{{4,7,10,9},{3,6,9,7},{2,5,8,5},{1,4,7,4}};
+       assertEqualMatrix(expectedRotatedMatrix,as.matrixRotator(matrix));
     }
 }
