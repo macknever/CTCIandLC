@@ -73,6 +73,24 @@ public class ArraysAndStringsTest extends TestBase{
     void matrixRotatorTest() {
        final int [][] matrix = new int[][]{{1,2,3,4},{4,5,6,7},{7,8,9,10},{4,5,7,9}};
        final int [][] expectedRotatedMatrix = new int[][]{{4,7,10,9},{3,6,9,7},{2,5,8,5},{1,4,7,4}};
-       assertEqualMatrix(expectedRotatedMatrix,as.matrixRotator(matrix));
+       as.matrixRotator(matrix);
+       assertEqualMatrix(expectedRotatedMatrix,matrix);
+    }
+
+    @Test
+    void zeroMatrixTest() {
+        final int [][] matrix = new int[][]{{1,2,3,0},{4,5,6,7},{7,8,9,10},{4,5,7,9}};
+        final int [][] expectedRotatedMatrix = new int[][]{{0,0,0,0},{4,5,6,0},{7,8,9,0},{4,5,7,0}};
+        as.zeroMatrix(matrix);
+        assertEqualMatrix(expectedRotatedMatrix,matrix);
+    }
+
+    @Test
+    void rotationCheckerTest() {
+        final String origin = "waterbottle";
+        final String toBeCheckedStr1 = "erbottlewat";
+        final String toBeCheckedStr2 =  "erbotlewate";
+        assertTrue(as.rotationChecker(origin,toBeCheckedStr1));
+        assertFalse(as.rotationChecker(origin,toBeCheckedStr2));
     }
 }

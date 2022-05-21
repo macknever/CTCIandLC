@@ -7,5 +7,7 @@ public interface ArraysAndStrings {
     boolean palindromePermutation(String str);
     boolean oneAway(String str1, String str2);
     String stringCompressor(String str);
-    int [][] matrixRotator(int[][] matrix);
+    void matrixRotator(int[][] matrix);
+    void zeroMatrix(int [][] matrix);
+    boolean rotationChecker(String str1, String str2);
 }

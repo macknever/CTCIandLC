@@ -1,7 +1,9 @@
 package CTCI;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class ArraysAndStringsImp implements ArraysAndStrings{
 
@@ -226,21 +228,64 @@ public class ArraysAndStringsImp implements ArraysAndStrings{
         return res;
     }
 
+    /**
+     * Rotate Matrix: Given an image represented by an NxN matrix, where each pixel in the image is 4
+     * bytes, write a method to rotate the image by 90 degrees. (an you do this in place?
+     * @param matrix
+     * @return
+     */
     @Override
-    public int[][] matrixRotator(int[][] matrix) {
+    public void matrixRotator(int[][] matrix) {
         int di = matrix.length;
 
         for(int i = 0; i < di/2; i++) {
-            for(int j = i; j < di - 1 - i;j++) {
+            for (int j = i; j < di - 1 - i; j++) {
                 int upper = matrix[i][j];
-                matrix[i][j] = matrix[j][di-i-1];
-                matrix[j][di-i-1] = matrix[di-i-1][di-j-1];
-                matrix[di-i-1][di-j-1] = matrix[di-j-1][i];
-                matrix[di-j-1][i] = upper;
+                matrix[i][j] = matrix[j][di - i - 1];
+                matrix[j][di - i - 1] = matrix[di - i - 1][di - j - 1];
+                matrix[di - i - 1][di - j - 1] = matrix[di - j - 1][i];
+                matrix[di - j - 1][i] = upper;
             }
-
         }
-        return matrix;
+        // Time complexity: O(N*N) Space complexity : O(1) does not use extra space.
+    }
+
+    /**
+     * Zero Matrix: Write an algorithm such that if an element in an MxN matrix is 0, its entire row and
+     * column are set to O.
+     * @param matrix
+     */
+    @Override
+    public void zeroMatrix(int[][] matrix) {
+        int row = matrix.length;
+        int col = matrix[0].length;
+
+        Set<Integer> zeroRow = new HashSet<>();
+        Set<Integer> zeroCol = new HashSet<>();
+
+        for(int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+
+                        int currVal = matrix[i][j];
+                        if(currVal == 0) {
+                            zeroRow.add(i);
+                             zeroCol.add(j);
+                        }
+            }
+        }
+
+        for(int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                if(zeroRow.contains(i) || zeroCol.contains(j)) matrix[i][j] = 0;
+            }
+        }
+    }
+
+    @Override
+    public boolean rotationChecker(String originString, String toBeCheckedString) {
+        if (originString.length() != toBeCheckedString.length()) return false;
+        String doubleOrigin = originString + originString;
+        return doubleOrigin.indexOf(toBeCheckedString) != -1;
     }
 
 }
